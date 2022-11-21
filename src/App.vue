@@ -1,8 +1,9 @@
 <template>
-  <h1>{{ title }}</h1>
-  <div class="containter">
-    <Header />
+  <div class="container">
+    <h1>{{ title }}</h1>
   </div>
+
+
 </template>
 
 <script>
@@ -15,7 +16,13 @@ export default {
   },
   components: {
     Header
-  }
+  },
+  data() {
+    return {
+      title: 'Tasks'
+    }
+  },
+  title: 'Task Tracker'
 }
 </script>
 
@@ -40,6 +47,7 @@ body {
   border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+  margin-top: 70px;
 }
 
 .btn {
