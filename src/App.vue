@@ -1,6 +1,8 @@
 <template>
   <h1>{{ title }}</h1>
-
+  <div class="containter">
+    <Header />
+  </div>
 </template>
 
 <script>
