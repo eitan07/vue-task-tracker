@@ -1,7 +1,7 @@
 <template>
     <h2 class="header">Tasks</h2>
 
-    <div class="tasks" v-for="task in tasks" :key="task">
+    <div class="tasks" v-for="task in tasks">
         <Task :task="task" />
     </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     },
     data() {
         return {
-            tasks: [new TaskModel("Task 1", "1", false)]
+            tasks: [new TaskModel("Task 1", "1", true), new TaskModel("Task 2", "2", false)]
         }
     }
 }
