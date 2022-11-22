@@ -11,3 +11,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.btn {
+    font-size: 15px;
+}
+</style>

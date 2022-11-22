@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
+    <div v-for="i in 3"><br /></div>
+    <Header />
   </div>
-
-
 </template>
 
 <script>
@@ -19,7 +19,7 @@ export default {
   },
   data() {
     return {
-      title: 'Tasks'
+      title: 'Task Tracker'
     }
   },
   title: 'Task Tracker'

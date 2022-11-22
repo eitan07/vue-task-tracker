@@ -13,10 +13,12 @@ import TaskModel from '../Models/Task'
 
 export default {
     name: 'Tasks',
+    components: {
+        Task
+    },
     data() {
         return {
             tasks: [new TaskModel("Task 1", "1", false)]
-
         }
     }
 }
