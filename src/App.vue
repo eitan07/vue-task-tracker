@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>{{ title }}</h1>
-    <div v-for="i in 3"><br /></div>
+    <div v-for="i in 2"><br /></div>
     <Header />
   </div>
 </template>
