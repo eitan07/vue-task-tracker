@@ -1,11 +1,15 @@
-export default class TaskModel {
-    Name
-    Description
-    Completed
+import { v4 as uuidv4 } from 'uuid'
 
-    constructor(Name, Description, Completed) {
-        this.Name = Name
-        this.Description = Description
-        this.Completed = Completed
-    }
-}   
+export default class TaskModel {
+        Name
+        Description
+        Completed
+        UUID
+
+        constructor(Name, Description) {
+                this.Name = Name
+                this.Description = Description
+                this.Completed = Completed
+                this.UUID = uuidv4()
+        }
+}

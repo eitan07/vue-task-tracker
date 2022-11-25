@@ -1,14 +1,18 @@
 <template>
     <h2 class="header">Tasks</h2>
 
-    <div @load="loadTasks()" class="tasks" v-for="task in tasks">
+    <div @load="loadTasks()" class="tasks" v-if="tasks.length > 0" v-for="task in tasks">
         <Task :task="task" />
+    </div>
+    <div v-else style="text-align: center; margin-top: 30px;">
+        <h1>No tasks yet</h1>
+        <br />
+        <h1>Press the "Add New Task" button to create one!</h1>
     </div>
 </template>
 
 <script>
 import Task from './Task.vue'
-import TaskModel from '../Models/Task'
 
 
 export default {
@@ -41,5 +45,11 @@ export default {
     font-size: 30px;
     margin-top: 30px;
     margin-bottom: 10px;
+}
+
+div>h1 {
+    font: 25px Poppins;
+    font-weight: bold;
+    color: rgb(75, 75, 75);
 }
 </style>

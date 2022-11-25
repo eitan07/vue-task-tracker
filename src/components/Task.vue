@@ -2,20 +2,53 @@
     <div class="taskFrame">
         <h3 class="property">Name: {{ task.Name }}</h3>
         <h3 class="property">Description: {{ task.Description }}</h3>
+        <h3 class="property">Completed: <input type="checkbox" @change="checkedChanged" :checked="task.Completed" />
+        </h3>
+        <button class="actionButton btn" @click="taskDeleted">Delete</button>
         <h3 class="property">Completed: <input type="checkbox" :checked="task.Completed" /></h3>
         <button class="actionButton">Delete</button>
     </div>
 </template>
 
 <script>
+
 export default {
     name: 'Task',
     props: {
         task: Object
     },
     methods: {
-        startAnimation: (() => {
+        taskDeleted: ((event) => {
+            const { target } = event
+            const rawArr = localStorage.getItem('_tasks')
+            const tasks = JSON.parse(rawArr)
+            // const tasks = []
 
+            const UUID = target.parentElement.getAttribute('uuid')
+
+            const taskIndex = tasks.findIndex(x => x.UUID === UUID)
+
+            if (taskIndex == 0) {
+                tasks.shift()
+            } else {
+                tasks.splice(taskIndex, 1)
+            }
+            localStorage.setItem('_tasks', JSON.stringify(tasks))
+            location.reload()
+        }),
+
+        checkedChanged: ((event) => {
+            const { target } = event
+            const rawArr = localStorage.getItem('_tasks')
+            const tasks = JSON.parse(rawArr)
+            // const tasks = []
+
+            const UUID = target.parentElement.parentElement.getAttribute('uuid')
+
+            const taskIndex = tasks.findIndex(x => x.UUID === UUID)
+
+            tasks[taskIndex].Completed = target.checked
+            localStorage.setItem('_tasks', JSON.stringify(tasks))
         })
     }
 }
