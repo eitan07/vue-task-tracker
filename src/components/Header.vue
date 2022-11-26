@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import TaskModel from '@/Models/Task'
+import TaskModel from '@/models/Task'
 import Button from './Button.vue'
 import Tasks from './Tasks.vue'
 
@@ -21,10 +21,9 @@ export default {
     methods: {
         createNewTask: (() => {
             const name = prompt('Enter task name:')
-            const description = prompt('Enter task description:')
-
-            if (name != null && description != null) {
-                if (name != "" && description != "") {
+            if (name != null && name != "") {
+                const description = prompt('Enter task description:')
+                if (description != null && description != "") {
                     const newTask = new TaskModel(name, description)
 
                     const rawArr = localStorage.getItem('_tasks')
@@ -33,7 +32,11 @@ export default {
 
                     localStorage.setItem('_tasks', JSON.stringify(tasks))
                     location.reload()
+                } else {
+                    alert('Empty fields are not allowed!')
                 }
+            } else {
+                alert('Empty fields are not allowed!')
             }
 
         })

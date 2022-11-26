@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import TaskModel from '@/Models/Task';
 import Task from './Task.vue'
 
 

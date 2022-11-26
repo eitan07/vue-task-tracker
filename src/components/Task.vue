@@ -2,7 +2,11 @@
     <div class="taskFrame">
         <h3 class="property">Name: {{ task.Name }}</h3>
         <h3 class="property">Description: {{ task.Description }}</h3>
-        <h3 class="property">Completed: <input type="checkbox" @change="checkedChanged" :checked="task.Completed" />
+        <h3 class="property">
+            Completed: <input type="checkbox" @change="checkedChanged" :checked="task.Completed" />
+        </h3>
+        <h3 class="property">Date: <input type="time" @change="timeAdded" v-if="task.Time == null" />
+            <h3 style="display: inline; font-size: 20px;" v-else>{{ task.Time }}</h3>
         </h3>
         <button class="actionButton btn" @click="taskDeleted">Delete</button>
     </div>
@@ -20,7 +24,6 @@ export default {
             const { target } = event
             const rawArr = localStorage.getItem('_tasks')
             const tasks = JSON.parse(rawArr)
-            // const tasks = []
 
             const UUID = target.parentElement.getAttribute('uuid')
 
@@ -39,7 +42,6 @@ export default {
             const { target } = event
             const rawArr = localStorage.getItem('_tasks')
             const tasks = JSON.parse(rawArr)
-            // const tasks = []
 
             const UUID = target.parentElement.parentElement.getAttribute('uuid')
 
@@ -47,6 +49,20 @@ export default {
 
             tasks[taskIndex].Completed = target.checked
             localStorage.setItem('_tasks', JSON.stringify(tasks))
+        }),
+
+        timeAdded: ((event) => {
+            const { target } = event
+            const rawArr = localStorage.getItem('_tasks')
+            const tasks = JSON.parse(rawArr)
+
+            const UUID = target.parentElement.parentElement.getAttribute('uuid')
+
+            const taskIndex = tasks.findIndex(x => x.UUID === UUID)
+
+            tasks[taskIndex].Time = target.value
+            localStorage.setItem('_tasks', JSON.stringify(tasks))
+            location.reload()
         })
     }
 }
@@ -70,6 +86,11 @@ input[type="checkbox"] {
     height: 17px;
     width: 17px;
     margin-left: 5px;
+    position: relative;
+    vertical-align: middle;
+}
+
+input[type="date"] {
     position: relative;
     vertical-align: middle;
 }
