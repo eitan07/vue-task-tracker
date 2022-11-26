@@ -1,14 +1,14 @@
 <template>
     <header>
         <div class="buttons">
-            <Button class="newTask" text="Add New Task" BackColor="green" />
-            <Button class="deleteTask" text="Delete Task" BackColor="red" />
+            <Button class="newTask" @click="createNewTask" text="Add New Task" BackColor="green" />
         </div>
         <Tasks />
     </header>
 </template>
 
 <script>
+import TaskModel from '@/Models/Task'
 import Button from './Button.vue'
 import Tasks from './Tasks.vue'
 
@@ -17,6 +17,26 @@ export default {
     components: {
         Button,
         Tasks
+    },
+    methods: {
+        createNewTask: (() => {
+            const name = prompt('Enter task name:')
+            const description = prompt('Enter task description:')
+
+            if (name != null && description != null) {
+                if (name != "" && description != "") {
+                    const newTask = new TaskModel(name, description)
+
+                    const rawArr = localStorage.getItem('_tasks')
+                    const tasks = JSON.parse(rawArr)
+                    tasks.push(newTask)
+
+                    localStorage.setItem('_tasks', JSON.stringify(tasks))
+                    location.reload()
+                }
+            }
+
+        })
     }
 }
 </script>
@@ -31,11 +51,12 @@ header {
 
 .buttons {
     display: flex;
-    border: 3px solid rgb(149, 207, 249);
-    border-radius: 10px;
-    /* height: 60px; */
-    padding: 15px;
+    padding: 10px;
     align-content: center;
     justify-content: space-around;
+}
+
+.newTask {
+    font: 17px Poppins;
 }
 </style>

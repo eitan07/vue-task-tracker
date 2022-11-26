@@ -9,7 +9,7 @@ export default class TaskModel {
         constructor(Name, Description) {
                 this.Name = Name
                 this.Description = Description
-                this.Completed = Completed
+                this.Completed = false
                 this.UUID = uuidv4()
         }
 }

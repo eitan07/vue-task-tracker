@@ -5,8 +5,6 @@
         <h3 class="property">Completed: <input type="checkbox" @change="checkedChanged" :checked="task.Completed" />
         </h3>
         <button class="actionButton btn" @click="taskDeleted">Delete</button>
-        <h3 class="property">Completed: <input type="checkbox" :checked="task.Completed" /></h3>
-        <button class="actionButton">Delete</button>
     </div>
 </template>
 
@@ -74,16 +72,6 @@ input[type="checkbox"] {
     margin-left: 5px;
     position: relative;
     vertical-align: middle;
-}
-
-@keyframes idk {
-    from {
-        transform: scaleY(1);
-    }
-
-    to {
-        transform: scaleY(3)
-    }
 }
 
 .actionButton {
